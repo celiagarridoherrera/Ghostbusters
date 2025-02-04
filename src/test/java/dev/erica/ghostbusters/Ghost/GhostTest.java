@@ -6,9 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 
 public class GhostTest {
     @Test
-    @DisplayName("")
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @DisplayName("Test class Ghost constructor")
+    public void testGhostCreate() {
+        
+        public void testGhostClass() {
+            Ghost.GhostClass ghostClass = Ghost.GhostClass.CLASS_I;
+            assertThat(ghostClass.getDescription(), is("Clase I - Manifestación menor"));
+        }
     }
 }
