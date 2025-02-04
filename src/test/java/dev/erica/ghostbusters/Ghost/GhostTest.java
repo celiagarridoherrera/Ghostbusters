@@ -22,8 +22,8 @@ public class GhostTest {
         assertThat(ghost.getID(), greaterThan(0));
         assertThat(ghost.getName(), is("Marcelino Paxarada"));
         assertThat(ghost.getGhostClass(), is(Ghost.GhostClass.CLASS_II));
-        assertThat(ghost.getGender(), is("Bajo"));
-        assertThat(ghost.getPower(), is("Leer la mente"));
-        assertThat(ghost.getDate(), is("12-02-2025"));
+        assertThat(ghost.getDangerLvl(), is("Bajo"));
+        assertThat(ghost.getAbility(), is("Leer la mente"));
+        assertThat(ghost.getCaptureDate(), is("12-02-2025"));
     }
 }
