@@ -1,17 +1,16 @@
 package dev.erica.ghostbusters.Ghost;
 
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 
 public class GhostTest {
+
     @Test
-    @DisplayName("Test class Ghost constructor")
-    public void testGhostCreate() {
-        
-        public void testGhostClass() {
-            Ghost.GhostClass ghostClass = Ghost.GhostClass.CLASS_I;
-            assertThat(ghostClass.getDescription(), is("Clase I - Manifestación menor"));
-        }
+    @DisplayName("Test GhostClass constructor")
+    public void testGhostClass() {
+        Ghost.GhostClass ghostClass = Ghost.GhostClass.CLASS_I;
+        assertThat(ghostClass.getDescription(), is("Clase I - Manifestación menor"));
     }
 }
