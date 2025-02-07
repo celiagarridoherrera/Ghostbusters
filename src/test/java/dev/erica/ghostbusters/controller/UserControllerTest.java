@@ -22,6 +22,7 @@ import org.mockito.ArgumentCaptor;
 
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
+import dev.erica.ghostbusters.view.DeleteGhostView;
 import dev.erica.ghostbusters.view.GhostView;
 import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
@@ -35,6 +36,9 @@ public class UserControllerTest {
 
     @Mock
     private GhostView ghostView;
+
+    @Mock
+    private DeleteGhostView deleteGhostView;
 
     @InjectMocks
     private UserController userController;
@@ -76,5 +80,27 @@ public class UserControllerTest {
 
         userController.showCapturedGhosts();
         verify(ghostView).showGhosts(ghosts);
+    }
+
+    @Test
+    @DisplayName("Test para liberar un fantasma por su ID válido")
+    void testReleaseGhost_Success() {
+        when(deleteGhostView.getGhostDeleteID()).thenReturn(1);
+        when(userModel.deleteGhost(1)).thenReturn(true);
+       
+        userController.releaseGhost();
+
+        verify(deleteGhostView).messageRelease();
+    }
+
+    @Test
+    @DisplayName("Test para liberar un fantasma por su ID que falla")
+    void testReleaseGhost_Fail() {
+        when(deleteGhostView.getGhostDeleteID()).thenReturn(99);
+        when(userModel.deleteGhost(99)).thenReturn(false);
+
+        userController.releaseGhost();
+
+        verify(deleteGhostView).messageReleaseFailed(99);
     }
 }
