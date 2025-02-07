@@ -6,6 +6,7 @@ import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
+import dev.erica.ghostbusters.view.DeleteGhostView;
 import dev.erica.ghostbusters.view.GhostView;
 
 
@@ -13,11 +14,13 @@ public class UserController {
     private final UserModel userModel;
     private final CreateGhostView createGhostView; 
     private final GhostView ghostView;
+    private final DeleteGhostView deleteGhostView;
 
-     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView) {
+     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView, DeleteGhostView deleteGhostView) {
         this.userModel = userModel;
         this.createGhostView = createGhostView;
         this.ghostView = ghostView;
+        this.deleteGhostView = deleteGhostView;
     }
 
     public void captureGhost() {
@@ -35,6 +38,16 @@ public class UserController {
     public void showCapturedGhosts() {
         List<GhostModel> ghosts = userModel.getGhosts();
         ghostView.showGhosts(ghosts);
+    }
+
+    public void releaseGhost() {
+        int id = deleteGhostView.getGhostDeleteID();
+        boolean success = userModel.deleteGhost(id);
+        if (success) {
+            deleteGhostView.messageRelease();
+        } else {
+            deleteGhostView.messageReleaseFailed(id);
+        }
     }
 }
 
