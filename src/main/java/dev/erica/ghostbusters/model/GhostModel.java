@@ -44,4 +44,9 @@ public class GhostModel {
         return captureDate;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%-3d %-20s %-35s %-8s %s",
+                id, name, ghostClass.getDescription(), dangerLvl, captureDate);
+    }
 }
