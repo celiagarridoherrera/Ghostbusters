@@ -15,4 +15,8 @@ public class UserModel {
     public List<GhostModel> getGhosts() {
         return new ArrayList<>(ghosts);
     }
+
+    public boolean deleteGhost(int id) {
+        return ghosts.removeIf(g -> g.getID() == id);
+    }
 }
