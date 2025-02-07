@@ -1,8 +1,16 @@
 package dev.erica.ghostbusters.controller;
 
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.Matchers.not;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -14,14 +22,19 @@ import org.mockito.ArgumentCaptor;
 
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
+import dev.erica.ghostbusters.view.GhostView;
 import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
+
 
 public class UserControllerTest {  
     @Mock
     private UserModel userModel;
     @Mock
     private CreateGhostView createGhostView;
+
+    @Mock
+    private GhostView ghostView;
 
     @InjectMocks
     private UserController userController;
@@ -54,5 +67,14 @@ public class UserControllerTest {
         verify(createGhostView).showCaptureSuccess("Pepito");
 
     }
-    
+
+    @Test
+    @DisplayName("Test para mostrar la lista de fantasmas capturados")
+    void testShowCapturedGhosts() {
+        List<GhostModel> ghosts = Arrays.asList(new GhostModel("Riku", GhostClass.CLASS_II, "Crítico", "dormir mucho", "10-02-2024"));
+        when(userModel.getGhosts()).thenReturn(ghosts);
+
+        userController.showCapturedGhosts();
+        verify(ghostView).showGhosts(ghosts);
+    }
 }
