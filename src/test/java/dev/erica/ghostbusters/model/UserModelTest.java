@@ -45,4 +45,12 @@ public class UserModelTest {
         ghosts.clear();
         assertThat(userModel.getGhosts(), is(not(empty())));
     }
+
+    @Test
+    @DisplayName("Test para liberar un fantasma")
+    void testDeleteGhost() {
+        boolean deleted = userModel.deleteGhost(ghost1.getID());
+        assertThat(deleted, is(true));
+        assertThat(userModel.getGhosts(), not(hasItem(ghost1)));
+    }
 }
