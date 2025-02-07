@@ -1,12 +1,15 @@
 package dev.erica.ghostbusters.model;
 
-import static org.junit.Assert.assertThat;
-
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class UserModelTest {
     private UserModel userModel;
