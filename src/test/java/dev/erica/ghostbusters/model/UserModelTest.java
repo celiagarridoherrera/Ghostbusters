@@ -6,6 +6,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,5 +53,12 @@ public class UserModelTest {
         boolean deleted = userModel.deleteGhost(ghost1.getID());
         assertThat(deleted, is(true));
         assertThat(userModel.getGhosts(), not(hasItem(ghost1)));
+    }
+
+    @Test
+    @DisplayName("Test para filtrar fantasmas por clase")
+    void testFilterByClass() {
+        List<GhostModel> poltergeist = userModel.filterByClass(GhostClass.CLASS_I);
+        assertThat(poltergeist, containsInAnyOrder(ghost1, ghost3));
     }
 }
