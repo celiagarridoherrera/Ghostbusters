@@ -1,18 +1,23 @@
 package dev.erica.ghostbusters.controller;
 
+import java.util.List;
+
 import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
+import dev.erica.ghostbusters.view.GhostView;
 
 
 public class UserController {
     private final UserModel userModel;
     private final CreateGhostView createGhostView; 
+    private final GhostView ghostView;
 
-     public UserController(UserModel userModel, CreateGhostView createGhostView) {
+     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView) {
         this.userModel = userModel;
         this.createGhostView = createGhostView;
+        this.ghostView = ghostView;
     }
 
     public void captureGhost() {
@@ -26,4 +31,10 @@ public class UserController {
         userModel.addGhost(newGhost);
         createGhostView.showCaptureSuccess(name);
     }
+
+    public void showCapturedGhosts() {
+        List<GhostModel> ghosts = userModel.getGhosts();
+        ghostView.showGhosts(ghosts);
+    }
 }
+

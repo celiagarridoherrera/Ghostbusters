@@ -22,14 +22,19 @@ import org.mockito.ArgumentCaptor;
 
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
+import dev.erica.ghostbusters.view.GhostView;
 import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
+
 
 public class UserControllerTest {  
     @Mock
     private UserModel userModel;
     @Mock
     private CreateGhostView createGhostView;
+
+    @Mock
+    private GhostView ghostView;
 
     @InjectMocks
     private UserController userController;
