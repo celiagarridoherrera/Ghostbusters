@@ -98,4 +98,16 @@ public class UserControllerTest {
 
         verify(deleteGhostView).messageReleaseFailed(99);
     }
+
+    @Test
+    @DisplayName("Test para mostrar los fantasmas capturados filtrados por clase")
+    void testFilterGhostsByClass() {
+        when(createGhostView.selectGhostClass()).thenReturn(GhostClass.CLASS_I);
+        List<GhostModel> filteredGhost = List.of(new GhostModel("Riku", GhostClass.CLASS_I, "Crítico", "dormir mucho", "10-02-2024"));
+        when(userModel.filterByClass(GhostClass.CLASS_I)).thenReturn(filteredGhost);
+
+        userController.filterGhostsByClass();
+
+        verify(ghostView).showGhosts(filteredGhost);
+    }    
 }
