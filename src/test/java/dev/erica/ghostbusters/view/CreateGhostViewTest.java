@@ -43,10 +43,18 @@ public class CreateGhostViewTest {
     }
 
     @Test
-    @DisplayName("Test de la vista para añadir el nivel de peligrosidad")
+    @DisplayName("Test de la vista para añadir el nivel de peligrosidad del fantasma")
     public void testGetDangerLevel() {
         createGhostView = createGhostInput("invalid\nmedio\n");
         String result = createGhostView.getDangerLevel();
         assertEquals("medio", result);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para añadir la habilidad del fantasma")
+    public void testGetAbility() {
+        createGhostView = createGhostInput("invisibilidad\n");
+        String result = createGhostView.getAbility();
+        assertEquals("invisibilidad", result);
     }
 }
