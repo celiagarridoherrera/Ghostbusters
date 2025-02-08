@@ -1,12 +1,13 @@
 package dev.erica.ghostbusters.view;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.ByteArrayInputStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import dev.erica.ghostbusters.model.GhostClass;
 
 public class CreateGhostViewTest {
 
@@ -14,7 +15,7 @@ public class CreateGhostViewTest {
 
     @BeforeEach
     public void setUp() {
-        createGhostView = createGhostInput("Fantasma1\n");
+        createGhostView = createGhostInput("Fantasma\n");
     }
     
     private CreateGhostView createGhostInput(String simulatedInput) {
@@ -23,10 +24,45 @@ public class CreateGhostViewTest {
     }
 
     @Test
-    @DisplayName("Test de la vista para crear un fantasma")
+    @DisplayName("Test de la vista para obtener el nombre de un fantasma")
     public void testGetGhostName() {
-        createGhostView = createGhostInput("\nFantasma2\n");
         String result = createGhostView.getGhostName();
-        assertEquals("Fantasma2", result);
+        assertEquals("Fantasma", result);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para sleccionar la clase de un fantasma")
+    public void testSelectGhostClass() {
+
+        createGhostView = createGhostInput("1\n");
+
+        GhostClass expectedClass = GhostClass.values()[0];
+        GhostClass selectedClass = createGhostView.selectGhostClass();
+
+        assertEquals(expectedClass, selectedClass);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para añadir el nivel de peligrosidad del fantasma")
+    public void testGetDangerLevel() {
+        createGhostView = createGhostInput("invalid\nmedio\n");
+        String result = createGhostView.getDangerLevel();
+        assertEquals("medio", result);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para añadir la habilidad del fantasma")
+    public void testGetAbility() {
+        createGhostView = createGhostInput("invisibilidad\n");
+        String result = createGhostView.getAbility();
+        assertEquals("invisibilidad", result);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para añadir la fecha de captura del fantasma")
+    public void testGetCaptureDate() {
+        createGhostView = createGhostInput("2023/03/12\n03-03-2025\n");
+        String result = createGhostView.getCaptureDate();
+        assertEquals("03-03-2025", result);
     }
 }
