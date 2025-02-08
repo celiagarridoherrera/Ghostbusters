@@ -19,12 +19,14 @@ import dev.erica.ghostbusters.model.GhostModel;
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
 import dev.erica.ghostbusters.view.DeleteGhostView;
+import dev.erica.ghostbusters.view.FilterByMonthView;
 import dev.erica.ghostbusters.view.GhostView;
 
 
 public class UserControllerTest {  
     @Mock
     private UserModel userModel;
+
     @Mock
     private CreateGhostView createGhostView;
 
@@ -33,6 +35,9 @@ public class UserControllerTest {
 
     @Mock
     private DeleteGhostView deleteGhostView;
+
+    @Mock
+    private FilterByMonthView filterByMonthView;
 
     @InjectMocks
     private UserController userController;
@@ -109,5 +114,17 @@ public class UserControllerTest {
         userController.filterGhostsByClass();
 
         verify(ghostView).showGhosts(filteredGhost);
-    }    
+    }
+
+    @Test
+    @DisplayName("Test para mostrar los fantasmas capturados filtrados por mes")
+    void testFiltterGhostsByMonth() {
+        when(filterByMonthView.getFilterMonth()).thenReturn(2);
+        List<GhostModel> filteredGhosts = List.of(new GhostModel("Casimiro", GhostClass.CLASS_III, "Crítico", "Mover objetos", "20-02-2024"));
+        when(userModel.filterByMonth(2)).thenReturn(filteredGhosts);
+
+        userController.filterGhostsByMonth();
+
+        verify(ghostView).showGhosts(filteredGhosts);
+    }
 }
