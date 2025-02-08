@@ -26,4 +26,15 @@ public class UserModel {
         .filter(g -> g.getGhostClass() == ghostClass)
         .collect(Collectors.toList());
     }
+
+    public List<GhostModel> filterByMonth(int month) {
+        return ghosts.stream()
+                .filter(g -> {
+                    String[] parts = g.getCaptureDate().split("-");
+                    if (parts.length < 2) return false;
+                    int ghostMonth = Integer.parseInt(parts[1]);
+                    return ghostMonth == month;
+                })
+                .collect(Collectors.toList());
+    }
 }
