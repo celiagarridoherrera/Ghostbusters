@@ -57,4 +57,12 @@ public class CreateGhostViewTest {
         String result = createGhostView.getAbility();
         assertEquals("invisibilidad", result);
     }
+
+    @Test
+    @DisplayName("Test de la vista para añadir la fecha de captura del fantasma")
+    public void testGetCaptureDate() {
+        createGhostView = createGhostInput("2023/03/12\n03-03-2025\n");
+        String result = createGhostView.getCaptureDate();
+        assertEquals("03-03-2025", result);
+    }
 }
