@@ -7,6 +7,7 @@ import dev.erica.ghostbusters.model.GhostModel;
 import dev.erica.ghostbusters.model.UserModel;
 import dev.erica.ghostbusters.view.CreateGhostView;
 import dev.erica.ghostbusters.view.DeleteGhostView;
+import dev.erica.ghostbusters.view.FilterByMonthView;
 import dev.erica.ghostbusters.view.GhostView;
 
 
@@ -15,12 +16,15 @@ public class UserController {
     private final CreateGhostView createGhostView; 
     private final GhostView ghostView;
     private final DeleteGhostView deleteGhostView;
+    private final FilterByMonthView filterByMonthView;
 
-     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView, DeleteGhostView deleteGhostView) {
+
+     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView, DeleteGhostView deleteGhostView, FilterByMonthView filterByMonthView) {
         this.userModel = userModel;
         this.createGhostView = createGhostView;
         this.ghostView = ghostView;
         this.deleteGhostView = deleteGhostView;
+        this.filterByMonthView = filterByMonthView;
     }
 
     public void captureGhost() {
@@ -55,5 +59,10 @@ public class UserController {
         List<GhostModel> filtered = userModel.filterByClass(ghostClass);
         ghostView.showGhosts(filtered);
     }
-}
 
+    public void filterGhostsByMonth() {
+        int month = filterByMonthView.getFilterMonth();
+        List<GhostModel> filtered = userModel.filterByMonth(month);
+        ghostView.showGhosts(filtered);
+    }
+}

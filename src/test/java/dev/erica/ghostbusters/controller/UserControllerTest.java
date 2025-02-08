@@ -45,7 +45,7 @@ public class UserControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        userController = new UserController(userModel, createGhostView, ghostView, deleteGhostView);
+        userController = new UserController(userModel, createGhostView, ghostView, deleteGhostView, filterByMonthView);
         when(createGhostView.getGhostName()).thenReturn("Pepito");
         when(createGhostView.selectGhostClass()).thenReturn(GhostClass.CLASS_I);
         when(createGhostView.getDangerLevel()).thenReturn("Alto");
