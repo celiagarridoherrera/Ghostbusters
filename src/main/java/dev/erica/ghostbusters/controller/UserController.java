@@ -49,5 +49,11 @@ public class UserController {
             deleteGhostView.messageReleaseFailed(id);
         }
     }
+
+    public void filterGhostsByClass() {
+        GhostClass ghostClass = createGhostView.selectGhostClass();
+        List<GhostModel> filtered = userModel.filterByClass(ghostClass);
+        ghostView.showGhosts(filtered);
+    }
 }
 
