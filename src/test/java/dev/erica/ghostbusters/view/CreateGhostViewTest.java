@@ -15,7 +15,7 @@ public class CreateGhostViewTest {
 
     @BeforeEach
     public void setUp() {
-        createGhostView = createGhostInput("Fantasma1\n");
+        createGhostView = createGhostInput("Fantasma\n");
     }
     
     private CreateGhostView createGhostInput(String simulatedInput) {
@@ -26,9 +26,8 @@ public class CreateGhostViewTest {
     @Test
     @DisplayName("Test de la vista para obtener el nombre de un fantasma")
     public void testGetGhostName() {
-        createGhostView = createGhostInput("\nFantasma2\n");
         String result = createGhostView.getGhostName();
-        assertEquals("Fantasma2", result);
+        assertEquals("Fantasma", result);
     }
 
     @Test
@@ -41,5 +40,13 @@ public class CreateGhostViewTest {
         GhostClass selectedClass = createGhostView.selectGhostClass();
 
         assertEquals(expectedClass, selectedClass);
+    }
+
+    @Test
+    @DisplayName("Test de la vista para añadir el nivel de peligrosidad")
+    public void testGetDangerLevel() {
+        createGhostView = createGhostInput("invalid\nmedio\n");
+        String result = createGhostView.getDangerLevel();
+        assertEquals("medio", result);
     }
 }
