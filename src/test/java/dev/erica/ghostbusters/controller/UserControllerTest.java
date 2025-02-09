@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
@@ -21,6 +26,7 @@ import dev.erica.ghostbusters.view.CreateGhostView;
 import dev.erica.ghostbusters.view.DeleteGhostView;
 import dev.erica.ghostbusters.view.FilterByMonthView;
 import dev.erica.ghostbusters.view.GhostView;
+import dev.erica.ghostbusters.view.MenuView;
 
 
 public class UserControllerTest {  
@@ -39,13 +45,16 @@ public class UserControllerTest {
     @Mock
     private FilterByMonthView filterByMonthView;
 
+    @Mock 
+    private MenuView menuView;
+
     @InjectMocks
     private UserController userController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        userController = new UserController(userModel, createGhostView, ghostView, deleteGhostView, filterByMonthView);
+        userController = new UserController(userModel, createGhostView, ghostView, deleteGhostView, filterByMonthView, menuView);
         when(createGhostView.getGhostName()).thenReturn("Pepito");
         when(createGhostView.selectGhostClass()).thenReturn(GhostClass.CLASS_I);
         when(createGhostView.getDangerLevel()).thenReturn("Alto");
@@ -126,5 +135,17 @@ public class UserControllerTest {
         userController.filterGhostsByMonth();
 
         verify(ghostView).showGhosts(filteredGhosts);
+    }
+
+    @Test
+    @DisplayName("Test para verificar la funcionalidad del menú inicial")
+    void testStart() {
+        when(menuView.showMenuAndGetOption()).thenReturn(1, 2, 6);
+
+        userController.start();
+
+        verify(menuView, atLeastOnce()).showMenuAndGetOption();
+        verify(userModel, times(1)).addGhost(any(GhostModel.class));
+        verify(ghostView, times(1)).showGhosts(anyList());
     }
 }

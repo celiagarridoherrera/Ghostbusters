@@ -1,5 +1,7 @@
 package dev.erica.ghostbusters.view;
 
+import dev.erica.ghostbusters.utils.Ansicolors;
+
 public class DeleteGhostView {
     UtilsView utilsView = new UtilsView(System.in);
     public int getGhostDeleteID() {
@@ -7,10 +9,10 @@ public class DeleteGhostView {
     }
 
     public void messageRelease() {
-        utilsView.showMessage("Fantasma liberado.");
+        utilsView.showMessage(Ansicolors.MAGENTA + "Fantasma liberado." + Ansicolors.RESET);
     }
     
     public void messageReleaseFailed(int id) {
-        utilsView.showMessage("No hay fantasmas con el ID " + id + ".");
+        utilsView.showMessage(Ansicolors.YELLOW + "No hay fantasmas con el ID " + id + "." + Ansicolors.RESET);
     }
 }

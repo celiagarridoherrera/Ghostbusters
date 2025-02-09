@@ -1,15 +1,13 @@
 package dev.erica.ghostbusters;
 
-import java.util.Scanner;
-
 import dev.erica.ghostbusters.controller.UserController;
 import dev.erica.ghostbusters.model.UserModel;
-import dev.erica.ghostbusters.utils.Ansicolors;
-import dev.erica.ghostbusters.utils.AsciiArt;
 import dev.erica.ghostbusters.view.CreateGhostView;
 import dev.erica.ghostbusters.view.DeleteGhostView;
 import dev.erica.ghostbusters.view.FilterByMonthView;
 import dev.erica.ghostbusters.view.GhostView;
+import dev.erica.ghostbusters.view.MenuView;
+import dev.erica.ghostbusters.view.UtilsView;
 
 public final class App {
     private App() {
@@ -19,54 +17,15 @@ public final class App {
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            CreateGhostView createGhostView = new CreateGhostView(System.in);
-            GhostView ghostView = new GhostView();
-            UserModel userModel = new UserModel();
-            DeleteGhostView deleteGhostView = new DeleteGhostView();
-            FilterByMonthView filterByMonthView = new FilterByMonthView();
-            UserController userController = new UserController(userModel, createGhostView, ghostView, deleteGhostView, filterByMonthView);
-            boolean exit = false;
-            while (!exit) {
-                AsciiArt.printAsciiArt("ghost.txt");
-                AsciiArt.printAsciiArt("title.txt");
-                System.out.println(Ansicolors.BRIGHT_BLACK + "============================================" + Ansicolors.RESET);
-                System.out.println(Ansicolors.BRIGHT_RED + " ¡Bienvenido a la central de Cazafantasmas!" + Ansicolors.RESET);
-                System.out.println(Ansicolors.RED + " Accediendo al contenedor de almacenamiento de fantasmas..." + Ansicolors.RESET);
-                System.out.println(Ansicolors.BRIGHT_BLACK + "============================================" + Ansicolors.RESET);
-                System.out.println(Ansicolors.BRIGHT_RED + "Seleccione una opción: " + Ansicolors.RESET);
-                System.out.println("1. Añadir un fantasma al sistema de almacenamiento");
-                System.out.println("2. Ver fantasmas capturados");
-                System.out.println("3. Liberar un fantasma");
-                System.out.println("4. Filtrar fantasmas por clase");
-                System.out.println("5. Ver fantasmas capturados en un mes específico");
-                System.out.println("6. Salir");
-                System.out.println(Ansicolors.RED + "Seleccione una opción (1-6): " + Ansicolors.RESET);
-                
-                int option;
-                if (scanner.hasNextInt()) {
-                    option = scanner.nextInt();
-                    scanner.nextLine();
-                } else {
-                    scanner.nextLine();
-                    System.out.println(Ansicolors.RED + "Por favor, introduzca un número entre 1 y 6." + Ansicolors.RESET);
-                    continue;
-                }
+        UtilsView utilsView = new UtilsView(System.in);
+        MenuView menuView = new MenuView(utilsView);
+        CreateGhostView createGhostView = new CreateGhostView(System.in);
+        GhostView ghostView = new GhostView();
+        DeleteGhostView deleteGhostView = new DeleteGhostView();
+        FilterByMonthView filterByMonthView = new FilterByMonthView();
+        UserModel userModel = new UserModel();
+        UserController userController = new UserController(userModel,createGhostView, ghostView, deleteGhostView, filterByMonthView, menuView);
 
-                switch (option) {
-                    case 1 -> userController.captureGhost();
-                    case 2 -> userController.showCapturedGhosts();
-                    case 3 -> userController.releaseGhost();
-                    case 4 -> userController.filterGhostsByClass();
-                    case 5 -> userController.filterGhostsByMonth();
-                    case 6 -> {
-                        AsciiArt.printAsciiArt("exit.txt");
-                        AsciiArt.printAsciiArt("ghost.txt");
-                        exit = true;
-                    }
-                    default -> System.out.println("Inténtelo de nuevo.");
-                }
-            }
-        }
+        userController.start();
     }
 }

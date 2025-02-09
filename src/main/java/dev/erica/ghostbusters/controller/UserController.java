@@ -5,10 +5,12 @@ import java.util.List;
 import dev.erica.ghostbusters.model.GhostClass;
 import dev.erica.ghostbusters.model.GhostModel;
 import dev.erica.ghostbusters.model.UserModel;
+import dev.erica.ghostbusters.utils.AsciiArt;
 import dev.erica.ghostbusters.view.CreateGhostView;
 import dev.erica.ghostbusters.view.DeleteGhostView;
 import dev.erica.ghostbusters.view.FilterByMonthView;
 import dev.erica.ghostbusters.view.GhostView;
+import dev.erica.ghostbusters.view.MenuView;
 
 
 public class UserController {
@@ -17,14 +19,15 @@ public class UserController {
     private final GhostView ghostView;
     private final DeleteGhostView deleteGhostView;
     private final FilterByMonthView filterByMonthView;
+    private final MenuView menuView;
 
-
-     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView, DeleteGhostView deleteGhostView, FilterByMonthView filterByMonthView) {
+     public UserController(UserModel userModel, CreateGhostView createGhostView, GhostView ghostView, DeleteGhostView deleteGhostView, FilterByMonthView filterByMonthView, MenuView menuView) {
         this.userModel = userModel;
         this.createGhostView = createGhostView;
         this.ghostView = ghostView;
         this.deleteGhostView = deleteGhostView;
         this.filterByMonthView = filterByMonthView;
+        this.menuView = menuView;
     }
 
     public void captureGhost() {
@@ -64,5 +67,25 @@ public class UserController {
         int month = filterByMonthView.getFilterMonth();
         List<GhostModel> filtered = userModel.filterByMonth(month);
         ghostView.showGhosts(filtered);
+    }
+
+    public void start() {
+        boolean exit = false;
+        while (!exit) {
+            int option = menuView.showMenuAndGetOption();
+
+            switch (option) {
+                case 1 -> captureGhost();
+                case 2 -> showCapturedGhosts();
+                case 3 -> releaseGhost();
+                case 4 -> filterGhostsByClass();
+                case 5 -> filterGhostsByMonth();
+                case 6 -> {
+                    AsciiArt.printAsciiArt("exit.txt");
+                    AsciiArt.printAsciiArt("ghost.txt");
+                    exit = true;
+                }
+            }
+        }
     }
 }

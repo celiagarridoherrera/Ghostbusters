@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import dev.erica.ghostbusters.model.GhostClass;
+import dev.erica.ghostbusters.utils.Ansicolors;
 
 public class CreateGhostView {
     
@@ -25,7 +26,7 @@ public class CreateGhostView {
             if (!input.isEmpty() && input.matches(pattern)) {
                 return input;
             }
-            System.out.println("Entrada inválida. El nombre debe contener al menos una letra y no puede estar vacío.");
+            System.out.println(Ansicolors.YELLOW + "Entrada inválida. El nombre debe contener al menos una letra y no puede estar vacío." + Ansicolors.RESET);
         }
     }
 
@@ -46,7 +47,7 @@ public class CreateGhostView {
             System.out.print("Ingrese el nivel de peligro (Bajo, Medio, Alto, Crítico): ");
             input = scanner.nextLine().trim().toLowerCase();
             if (!validOptions.contains(input)) {
-                System.out.println("Entrada inválida. Por favor, ingrese una de las siguientes opciones: " + String.join(", ", validOptions) + ".");
+                System.out.println(Ansicolors.YELLOW + "Entrada inválida. Por favor, ingrese una de las siguientes opciones: " + String.join(", ", validOptions) + "." + Ansicolors.RESET);
             }
         } while (!validOptions.contains(input));
         return input;
@@ -60,7 +61,7 @@ public class CreateGhostView {
             if (!input.isEmpty() && input.matches(pattern)) {
                 return input;
             }
-            System.out.println("Entrada inválida. La habilidad debe contener al menos una letra y no puede estar vacía.");
+            System.out.println(Ansicolors.YELLOW + "Entrada inválida. La habilidad debe contener al menos una letra y no puede estar vacía." + Ansicolors.RESET);
         }
     }
 
@@ -71,13 +72,13 @@ public class CreateGhostView {
             System.out.print("Ingrese la fecha de captura (DD-MM-AAAA): ");
             input = scanner.nextLine().trim();
             if (!input.matches(pattern)) {
-                System.out.println("Formato de fecha inválido. Use el formato DD-MM-AAAA.");
+                System.out.println(Ansicolors.YELLOW + "Formato de fecha inválido. Use el formato DD-MM-AAAA." + Ansicolors.RESET);
             }
         } while (!input.matches(pattern));
         return input;
     }
 
     public void showCaptureSuccess(String name) {
-        utilsView.showMessage("\n¡Fantasma \"" + name + "\" capturado!");
+        utilsView.showMessage(Ansicolors.MAGENTA + "\n¡Fantasma \"" + name + "\" capturado!" + Ansicolors.RESET);
     }
 }
