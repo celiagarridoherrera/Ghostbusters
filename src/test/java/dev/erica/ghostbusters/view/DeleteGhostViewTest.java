@@ -36,7 +36,7 @@ public class DeleteGhostViewTest {
     @DisplayName("Test para la vista del mensaje al liberar un fantasma")
     void testMessageRelease() {
         deleteGhostView.messageRelease();
-        verify(utilsViewMock).showMessage("Fantasma liberado.");
+        verify(utilsViewMock).showMessage("[35mFantasma liberado.[0m");
     }
 
     @Test
@@ -45,6 +45,6 @@ public class DeleteGhostViewTest {
         int id = 7;
 
         deleteGhostView.messageReleaseFailed(id);
-        verify(utilsViewMock).showMessage("No hay fantasmas con el ID 7.");
+        verify(utilsViewMock).showMessage("[33mNo hay fantasmas con el ID 7.[0m");
     }
 }

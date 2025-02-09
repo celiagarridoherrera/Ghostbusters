@@ -3,6 +3,8 @@ package dev.erica.ghostbusters.view;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import dev.erica.ghostbusters.utils.Ansicolors;
+
 public class UtilsView {
 
     private final Scanner scanner;
@@ -24,7 +26,7 @@ public class UtilsView {
             } else {
                 scanner.next();
             }
-            System.out.println("Entrada inválida. Por favor, ingrese un número entre " + min + " y " + max + ".");
+            System.out.println(Ansicolors.YELLOW + "Entrada inválida. Por favor, ingrese un número entre " + min + " y " + max + "." + Ansicolors.RESET);
         }
     }
     
