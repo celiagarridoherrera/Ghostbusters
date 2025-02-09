@@ -48,6 +48,13 @@ public class UserModelTest {
     }
 
     @Test
+    @DisplayName("Test para que al añadir un fantasma de null")
+    void testAddNullGhost() {
+        userModel.addGhost(null);
+        assertThat(userModel.getGhosts().size(), is(3));
+    }
+
+    @Test
     @DisplayName("Test para liberar un fantasma")
     void testDeleteGhost() {
         boolean deleted = userModel.deleteGhost(ghost1.getID());
