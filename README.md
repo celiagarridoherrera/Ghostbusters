@@ -2,7 +2,7 @@
 
 ### Captura y gestión de fantasmas
 
-## 📑 Índice
+## Índice
 1. [Descripción](#-descripción)
 2. [Equipo de desarrollo](#-equipo-de-desarrollo)
 3. [Tecnologías utilizadas](#-tecnologías-utilizadas)
@@ -36,7 +36,7 @@
 4. **Filtrar fantasmas** según su clase.
 5. **Ver fantasmas capturados en un mes específico**.
 
-## 🎯 Alcance del MVP
+## Alcance del MVP
 El MVP incluye:
 - Captura de fantasmas con asignación de atributos básicos (nombre, tipo, ubicación, peligrosidad).
 - Listado y filtrado de fantasmas capturados.
