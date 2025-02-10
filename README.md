@@ -69,10 +69,10 @@ El MVP incluye:
 
 ### Diagrama de clases
 [link al diagrama de clases](https://drive.google.com/file/d/1dANGnUUrBnzP-vaCv9GC9h70BTDaZCKD/view?usp=sharing)
-![Diagrama de clases](assets/diagrama%20de%20clases.png)
+![Diagrama de clases](assets/diagrama.png)
 
 ### Cobertura de tests
-![Tests](assets/test%20ghost.png)
+![Tests](assets/tests.PNG)
 
 ---
 ¡Caza fantasmas y mantenos libre de espectros! 👻⚡
