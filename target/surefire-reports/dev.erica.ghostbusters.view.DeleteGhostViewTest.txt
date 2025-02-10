@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: dev.erica.ghostbusters.view.DeleteGhostViewTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.854 s <<< FAILURE! - in dev.erica.ghostbusters.view.DeleteGhostViewTest
+dev.erica.ghostbusters.view.DeleteGhostViewTest.testMessageRelease  Time elapsed: 2.678 s  <<< FAILURE!
+org.mockito.exceptions.verification.opentest4j.ArgumentsAreDifferent: 
+
+Argument(s) are different! Wanted:
+utilsView.showMessage(
+    "Fantasma liberado."
+);
+-> at dev.erica.ghostbusters.view.DeleteGhostViewTest.testMessageRelease(DeleteGhostViewTest.java:39)
+Actual invocations have different arguments:
+utilsView.showMessage(
+    "[35mFantasma liberado.[0m"
+);
+-> at dev.erica.ghostbusters.view.DeleteGhostView.messageRelease(DeleteGhostView.java:12)
+
+	at dev.erica.ghostbusters.view.DeleteGhostViewTest.testMessageRelease(DeleteGhostViewTest.java:39)
+

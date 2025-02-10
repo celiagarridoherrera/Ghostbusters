@@ -1,0 +1,4 @@
+# Created at 2025-02-07T12:37:25.752
+Boot Manifest-JAR contains absolute paths in classpath 'D:\F5\Ghostbusters\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

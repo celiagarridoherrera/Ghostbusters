@@ -69,7 +69,7 @@ El MVP incluye:
 
 ### Diagrama de clases
 [link al diagrama de clases](https://drive.google.com/file/d/1dANGnUUrBnzP-vaCv9GC9h70BTDaZCKD/view?usp=sharing)
-![Diagrama de clases](assets/diagrama.png)
+![Diagrama de clases](assets/diagramaclases.png)
 
 ### Cobertura de tests
 ![Tests](assets/tests.PNG)
